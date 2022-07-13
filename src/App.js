@@ -1,18 +1,19 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import Coin from "./Coin";
+import Coin from "./Components/Coin/Coin";
 import './App.css'
-// https://api.coingecko.com/api/v3/coins/markets?vs_currency=cad&order=market_cap_desc&per_page=100&page=1&sparkline=false
+
+const API_URL = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=cad&order=market_cap_desc&per_page=100&page=1&sparkline=false'
 function App() {
   
  // States
  const [coins, setCoin] = useState([])
- const [search, editSearch] = useState('b')
+ const [search, editSearch] = useState('')
 
     useEffect(()=>{
 
       //Fetching data from coingecko API
-      axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=cad&order=market_cap_desc&per_page=100&page=1&sparkline=false')
+      axios.get(`${API_URL}`)
       .then(res =>{
         setCoin(res.data)
       })
